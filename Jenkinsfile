@@ -5,6 +5,10 @@ pipeline {
         nodejs 'NodeJs LTS'
     }
 
+    environment {
+        DEPLOY_PATH = "/var/www/pokedex"
+    }
+
     stages {
         stage('Install Dependencies') {
             steps {
@@ -16,21 +20,18 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        // stage('Stop Application') {
-        //     steps {
-        //         sh 'pm2 delete diegozar-web || true'
-        //     }
-        // }
-        // stage('Start Application') {
-        //     steps {
-        //         sh 'pm2 start'
-        //     }
-        // }
-        // stage('PM2 save') {
-        //     steps {
-        //         sh 'pm2 save'
-        //     }
-        // }
+
+        stage('Deploy') {
+            steps {
+                sh "sudo rm -rf ${DEPLOY_PATH}/*"
+                sh "sudo mkdir -p ${DEPLOY_PATH}"
+
+                sh "sudo cp -r dist/* ${DEPLOY_PATH}/"
+
+                sh "sudo chown -R www-data:www-data ${DEPLOY_PATH}"
+                sh "sudo chmod -R 755 ${DEPLOY_PATH}"
+            }
+        }
     }
 
 }
