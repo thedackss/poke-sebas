@@ -1,0 +1,66 @@
+@use "normalizer";
+
+body {
+    background: var(--background);
+    font-family: "JetBrains Mono", serif;
+
+    & > * {
+        color: var(--color);
+    }
+
+    #app {
+        margin: auto;
+        width: 100%;
+        max-width: 26.75rem;
+        padding: 2rem;
+        #poke-name {
+            text-transform: capitalize;
+        }
+        #poke-img {
+            width: 70%;
+        }
+        ul {
+            list-style: none;
+            li {
+                text-transform: capitalize;
+                opacity: 0.8;
+            }
+        }
+        h3 {
+            font-weight: 600;
+        }
+        #poke-stats li {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 2rem;
+
+            opacity: 1;
+
+            .stat-name {
+                width: 40%;
+                opacity: 0.8;
+                color: #1a1a1a;
+            }
+            .stat-value {
+                font-weight: 500;
+            }
+        }
+    }
+    footer {
+        width: 100%;
+        padding: 1rem;
+        padding-top: 0;
+        a {
+            display: inline-block;
+            width: 100%;
+            margin: auto;
+            text-align: center;
+            opacity: 0.5;
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+        }
+    }
+}
