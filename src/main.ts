@@ -30,6 +30,8 @@ window.onload = async () => {
 
     const pokemon = (await Fetch(info)) as Pokemon;
 
+    document.title = document.title + ` | ${pokemon.name}`;
+
     setInnerHTML("poke-name", pokemon.name);
     setSrc("poke-img", image);
 
